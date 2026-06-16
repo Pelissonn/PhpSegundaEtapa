@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Album;
 use App\Models\Music;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -50,3 +51,17 @@ Route::get('/tarefas', function () {
 });
 
 Route::get('/perfil', [PerfilController::class, 'index']);
+
+Route::get('/create-test-album', function () {
+    $album = Album::create([
+        'nome' => 'Dark Side of the Moon',
+        'artista' => 'Pink Floyd',
+        'ano_lancamento' => 1973,
+        'url_imagem' => 'https://static.vecteezy.com/ti/vetor-gratis/p1/9169455-ceu-dourado-por-do-sol-na-costa-natureza-paisagem-vetor.jpg',
+    ]);
+    return 'Album criado! ID: ' . $album->id;
+});
+
+Route::get('/albuns', function () {
+    return Album::all();
+});
